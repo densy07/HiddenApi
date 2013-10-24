@@ -3,6 +3,7 @@ package com.keenhi.mid.core.hiddenapi;
 import android.app.StatusBarManager;
 import android.content.Context;
 import android.hardware.input.InputManager;
+import android.os.SystemProperties;
 import android.util.Log;
 import android.view.InputEvent;
 import android.view.KeyEvent;
@@ -38,6 +39,7 @@ public class Hiddenapi {
 	public static void disableStatusBarPredefine(Object sbm){
 		if(sbm instanceof StatusBarManager){
 			Log.d(TAG,"disable the status bar");
+			SystemProperties.set("sys.assisttouch.forceshow", "true");
 			((StatusBarManager)sbm).disable(StatusBarManager.DISABLE_BACK|StatusBarManager.DISABLE_HOME|StatusBarManager.DISABLE_EXPAND|StatusBarManager.DISABLE_RECENT);
 		}
 	}
@@ -45,6 +47,7 @@ public class Hiddenapi {
 	public static void enableStatusBarPredefine(Object sbm){
 		if(sbm instanceof StatusBarManager){
 			Log.d(TAG,"enable the status bar");
+			SystemProperties.set("sys.assisttouch.forceshow", "false");
 			((StatusBarManager)sbm).disable(StatusBarManager.DISABLE_NONE);
 		}
 	}
